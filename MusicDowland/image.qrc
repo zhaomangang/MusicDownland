@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>image/start.ico</file>
+        <file>image/start.jpg</file>
+        <file>image/timg.jpg</file>
+        <file>image/pay.jpg</file>
+        <file>image/payy.png</file>
+    </qresource>
+</RCC>
