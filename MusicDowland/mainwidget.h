@@ -10,6 +10,7 @@
 #include <downland.h>
 #include <QFile>
 #include<QVector>
+#include <QMediaPlayer>
 typedef struct{
     QString name;
     QString songer;
@@ -39,6 +40,7 @@ private:
     Downland *set;
     QString downurl;
     QString downname;
+     QMediaPlayer *player;
     bool lis;
     int count;
 private slots:
@@ -49,6 +51,26 @@ private slots:
      void on_setbutton_clicked();
      void on_downall_clicked();
      void slotNext();
+     void on_pushButton_clicked();
+
+
+     void on_pause_clicked();
+
+
+
+     void on_valum_sliderMoved(int position);
+
+
+     void on_jin_pressed();
+
+     void on_tui_pressed();
+
+     void on_jin_clicked();
+
+     void on_jin_toggled(bool checked);
+
+     void on_tui_clicked();
+
 signals:
      void beiginnext();
 };

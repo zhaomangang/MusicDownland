@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <downland.h>
+#include <QProcess>
 //#incldue <>
 MainWidget::MainWidget(QWidget *parent) :
     QWidget(parent),
@@ -16,6 +17,8 @@ MainWidget::MainWidget(QWidget *parent) :
         connect(this,SIGNAL(beiginnext()),this,SLOT(slotNext()));
     connect(manage,SIGNAL(finished(QNetworkReply*)),this,SLOT(oneProcessFinished(QNetworkReply*)));
       //req = "http://quan.suning.com/getSysTime.do";
+     manage->get(QNetworkRequest(QUrl("http://47.99.95.58/file/md/notice.html")));
+     type = "notice";
     set = new Downland();
     set->setWindowModality(Qt::WindowModal);
     lis = false;
@@ -32,7 +35,13 @@ MainWidget::MainWidget(QWidget *parent) :
     ui->resultList->setModel(standItemModel);    //挂载表格模型
     ui->resultList->setMouseTracking(true);
     connect(ui->resultList, SIGNAL(entered(QModelIndex)),this, SLOT(showToolTip(QModelIndex)));
-
+    player = new QMediaPlayer;
+    connect(player, SIGNAL(positionChanged(qint64)), this, SLOT(positionChanged(qint64)));
+   // player->setMedia(QUrl("http://fs.android2.kugou.com/9cd5746207ad63bfe09a01b38dcb31fa/5e6dc72c/G014/M06/0D/11/roYBAFUMeoeAbmcpAKDH4HkxDoU299.mp3"));
+    player->setVolume(30);
+    ui->valum->setValue(30);
+   // player->play();
+   // player->s
 
 }
 void MainWidget::oneProcessFinished(QNetworkReply *reply)
@@ -139,8 +148,39 @@ void MainWidget::oneProcessFinished(QNetworkReply *reply)
 
 
         type = "";
-    }else{
-        qDebug()<<reply->readAll();
+    }else if("notice"==type){
+
+            QString notice = reply->readAll();
+            qDebug()<<notice;
+            if(notice.contains("time",Qt::CaseSensitive))
+                QMessageBox::warning(this,QStringLiteral("公告"),notice);
+
+
+
+        type="";
+    }else if("update" == type){
+        QFile file("temp.exe");
+        if (file.open(QIODevice::WriteOnly))
+        {
+            file.write(reply->readAll());
+            //count++;
+            file.close();
+            QProcess p(0);
+             p.start("update.exe");
+
+        }
+
+        type = "";
+    }else if("player"==type){
+        QString tem = reply->readAll();
+        qDebug()<< tem;
+               player->setMedia(QUrl(tem));
+               player->play();
+
+    }
+    else{
+
+        qDebug()<<" else";
         emit beiginnext();
     }
 
@@ -184,6 +224,28 @@ void MainWidget::showResult()
         connect(listen_PushButton,&QPushButton::clicked,
                 [=]()
                 {
+            QDateTime current_date_time =QDateTime::currentDateTime();
+            QString current_date =current_date_time.toString("yyyy-MM-dd");
+            QString data;
+            for(int i=9,j=0;i>=0;i--,j++)
+            {
+                data[j] = current_date[i];
+            }
+            QString pwd=QString("%1vgmusic").arg(data);
+            QString md5;
+            QByteArray ba,bb;
+            QCryptographicHash md(QCryptographicHash::Md5);
+            ba.append(pwd);
+            md.addData(ba);
+            bb = md.result();
+            md5.append(bb.toHex());
+            qDebug()<<md5;
+            QString temp = QString("http://140.143.30.148:88/index.php?key=%1&class=kugou&ID=%2&k=%3").arg(md5).arg(music_list.at(i).id).arg(320);
+            qDebug()<<temp;
+            type = "player";
+            QString str = QString("%1__%2").arg(music_list.at(i).name).arg(music_list.at(i).songer);
+            ui->na->setText(str);
+            manage->get(QNetworkRequest(QUrl(temp)));    //请求实现
 
 
 
@@ -216,7 +278,7 @@ bool MainWidget::downLand(QString id,QString name,int k)
 
     downname = name;
     QDateTime current_date_time =QDateTime::currentDateTime();
-    QString current_date =current_date_time.toString("yyyy-MM-dd_hh:mm:ss");
+    QString current_date =current_date_time.toString("yyyy-MM-dd");
     QString te = QString("[%1]开始下载：%2").arg(current_date).arg(name);
     ui->htmlview->append(te);
     qDebug()<<current_date;
@@ -302,4 +364,67 @@ void MainWidget::on_downall_clicked()
 
 
     }
+}
+
+void MainWidget::on_pushButton_clicked()
+{
+    //更新
+    //type = "update";
+    //manage->get(QNetworkRequest(QUrl("http://47.99.95.58/file/md/MusicDowland.exe")));
+
+
+}
+
+
+void MainWidget::on_pause_clicked()
+{
+    if(ui->pause->text()=="暂停"){
+        ui->pause->setText("继续");
+        player->pause();
+    }else{
+        ui->pause->setText("暂停");
+        player->play();
+    }
+}
+
+
+void MainWidget::on_valum_sliderMoved(int position)
+{
+    player->setVolume(position);
+}
+
+void MainWidget::on_jin_pressed()
+{
+    if(player->position()+1>player->duration())
+    {
+
+    }
+
+
+}
+
+void MainWidget::on_tui_pressed()
+{
+
+
+
+}
+
+void MainWidget::on_jin_clicked()
+{
+  //  player->setPosition(player->position()+10);
+    qDebug()<<player->position();
+    player->setPosition(player->position()+1000);
+
+}
+
+void MainWidget::on_jin_toggled(bool checked)
+{
+
+}
+
+void MainWidget::on_tui_clicked()
+{
+    qDebug()<<player->position();
+    player->setPosition(player->position()-1000);
 }
