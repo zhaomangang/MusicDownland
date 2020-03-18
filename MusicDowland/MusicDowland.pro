@@ -37,8 +37,24 @@ FORMS += \
     downland.ui
 
 DISTFILES += \
-    exe.rc
+    exe.rc \
+    android/AndroidManifest.xml \
+    android/gradle/wrapper/gradle-wrapper.jar \
+    android/gradlew \
+    android/res/values/libs.xml \
+    android/build.gradle \
+    android/gradle/wrapper/gradle-wrapper.properties \
+    android/gradlew.bat \
+    android/AndroidManifest.xml \
+    android/gradle/wrapper/gradle-wrapper.jar \
+    android/gradlew \
+    android/res/values/libs.xml \
+    android/build.gradle \
+    android/gradle/wrapper/gradle-wrapper.properties \
+    android/gradlew.bat
 
 RESOURCES += \
     image.qrc
 RC_FILE += exe.rc
+
+ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android

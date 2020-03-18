@@ -18,7 +18,9 @@ MainWidget::MainWidget(QWidget *parent) :
     connect(manage,SIGNAL(finished(QNetworkReply*)),this,SLOT(oneProcessFinished(QNetworkReply*)));
       //req = "http://quan.suning.com/getSysTime.do";
      manage->get(QNetworkRequest(QUrl("http://47.99.95.58/file/md/notice.html")));
+    // manage->get(QNetworkRequest(QUrl("https://www.kugou.com/yy/rank/home/1-6666.html?from=rank")));
      type = "notice";
+     //type =
     set = new Downland();
     set->setWindowModality(Qt::WindowModal);
     lis = false;
@@ -47,7 +49,7 @@ MainWidget::MainWidget(QWidget *parent) :
 void MainWidget::oneProcessFinished(QNetworkReply *reply)
 {
 
-
+  //s  qDebug()<<reply->readAll();
     qDebug()<<"lin42";
    // ui->htmlview->setHtml(html);
     if("sort"==type){

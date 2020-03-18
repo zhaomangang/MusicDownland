@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="D:\code\MusicDownland\build-MusicDowland-Android_for_armeabi_v7a_GCC_4_9_Qt_5_9_0_for_Android_armv7-Debug\android-build\libs\QtAndroidBearer-bundled.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="29.0.3"
+        sha1="9ab1f1638d6cb26066cb7a1313a439bb7d21db24">
+        <dex dex="D:\code\MusicDownland\build-MusicDowland-Android_for_armeabi_v7a_GCC_4_9_Qt_5_9_0_for_Android_armv7-Debug\android-build\build\intermediates\pre-dexed\debug\QtAndroidBearer-bundled_aa128692c1ee80b672790d78494d3cf70bbbb8d2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\code\MusicDownland\build-MusicDowland-Android_for_armeabi_v7a_GCC_4_9_Qt_5_9_0_for_Android_armv7-Debug\android-build\libs\QtMultimedia-bundled.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="29.0.3"
+        sha1="a5fc0583b5553def4cfc01757a2271391ecb1297">
+        <dex dex="D:\code\MusicDownland\build-MusicDowland-Android_for_armeabi_v7a_GCC_4_9_Qt_5_9_0_for_Android_armv7-Debug\android-build\build\intermediates\pre-dexed\debug\QtMultimedia-bundled_1c7a098ba83a62d22744c8b87f085d82c0844c41.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\code\MusicDownland\build-MusicDowland-Android_for_armeabi_v7a_GCC_4_9_Qt_5_9_0_for_Android_armv7-Debug\android-build\libs\QtAndroid-bundled.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="29.0.3"
+        sha1="39c89e9accbc6964314590d25dd7ef16d6278da7">
+        <dex dex="D:\code\MusicDownland\build-MusicDowland-Android_for_armeabi_v7a_GCC_4_9_Qt_5_9_0_for_Android_armv7-Debug\android-build\build\intermediates\pre-dexed\debug\QtAndroid-bundled_b8b20b3ee6985f1d9762431bbccd3102173f8df3.jar" />
+    </item>
+
+</items>

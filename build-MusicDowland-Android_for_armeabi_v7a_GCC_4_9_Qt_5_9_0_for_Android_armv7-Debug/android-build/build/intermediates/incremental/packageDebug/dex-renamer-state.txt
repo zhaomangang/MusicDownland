@@ -1,0 +1,4 @@
+#Tue Mar 17 22:47:11 CST 2020
+base.0=D\:\\code\\MusicDownland\\build-MusicDowland-Android_for_armeabi_v7a_GCC_4_9_Qt_5_9_0_for_Android_armv7-Debug\\android-build\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main
+renamed.0=classes.dex
+file.0=D\:\\code\\MusicDownland\\build-MusicDowland-Android_for_armeabi_v7a_GCC_4_9_Qt_5_9_0_for_Android_armv7-Debug\\android-build\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main\\classes.dex
