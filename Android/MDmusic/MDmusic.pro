@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network
+QT       += core gui network sql
 QT       += multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -26,13 +26,22 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        mainwidget.cpp
+        mainwidget.cpp \
+    play.cpp \
+    menu.cpp \
+    data.cpp
 
 HEADERS += \
-        mainwidget.h
+        mainwidget.h \
+    play.h \
+    music.h \
+    menu.h \
+    data.h
 
 FORMS += \
-        mainwidget.ui
+        mainwidget.ui \
+    play.ui \
+    menu.ui
 
 CONFIG += mobility
 MOBILITY = 

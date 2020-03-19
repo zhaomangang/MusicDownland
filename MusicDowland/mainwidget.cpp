@@ -218,8 +218,6 @@ void MainWidget::showResult()
                     QString str = QString("%1_%2").arg(music_list.at(i).name).arg(music_list.at(i).songer);
                     downLand(music_list.at(i).id,str,set->k);
 
-
-
                 }
 
                );

@@ -19,7 +19,9 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QProgressBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSlider>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -39,23 +41,26 @@ public:
     QFrame *frame_3;
     QHBoxLayout *horizontalLayout_2;
     QLineEdit *inputEdit;
+    QProgressBar *progressBar;
     QPushButton *sort;
     QTableView *resultList;
     QFrame *frame;
-    QHBoxLayout *horizontalLayout;
-    QPushButton *playpage;
+    QGridLayout *gridLayout_2;
     QWidget *widget;
     QVBoxLayout *verticalLayout_3;
     QLabel *name;
-    QLabel *player;
+    QLabel *songer;
     QPushButton *play;
+    QSlider *horizontalSlider;
     QPushButton *menu;
+    QPushButton *playpage;
+    QLabel *time;
 
     void setupUi(QWidget *MainWidget)
     {
         if (MainWidget->objectName().isEmpty())
             MainWidget->setObjectName(QStringLiteral("MainWidget"));
-        MainWidget->resize(432, 936);
+        MainWidget->resize(638, 936);
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -128,6 +133,12 @@ public:
 
         horizontalLayout_2->addWidget(inputEdit);
 
+        progressBar = new QProgressBar(frame_3);
+        progressBar->setObjectName(QStringLiteral("progressBar"));
+        progressBar->setValue(24);
+
+        horizontalLayout_2->addWidget(progressBar);
+
         sort = new QPushButton(frame_3);
         sort->setObjectName(QStringLiteral("sort"));
         QIcon icon1;
@@ -142,6 +153,18 @@ public:
 
         resultList = new QTableView(frame_2);
         resultList->setObjectName(QStringLiteral("resultList"));
+        resultList->horizontalHeader()->setVisible(false);
+        resultList->horizontalHeader()->setCascadingSectionResizes(false);
+        resultList->horizontalHeader()->setDefaultSectionSize(220);
+        resultList->horizontalHeader()->setHighlightSections(true);
+        resultList->horizontalHeader()->setMinimumSectionSize(220);
+        resultList->horizontalHeader()->setProperty("showSortIndicator", QVariant(false));
+        resultList->horizontalHeader()->setStretchLastSection(false);
+        resultList->verticalHeader()->setVisible(false);
+        resultList->verticalHeader()->setCascadingSectionResizes(false);
+        resultList->verticalHeader()->setDefaultSectionSize(120);
+        resultList->verticalHeader()->setHighlightSections(false);
+        resultList->verticalHeader()->setMinimumSectionSize(120);
 
         verticalLayout_2->addWidget(resultList);
 
@@ -157,21 +180,10 @@ public:
         frame->setSizePolicy(sizePolicy4);
         frame->setFrameShape(QFrame::StyledPanel);
         frame->setFrameShadow(QFrame::Raised);
-        horizontalLayout = new QHBoxLayout(frame);
-        horizontalLayout->setSpacing(6);
-        horizontalLayout->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        playpage = new QPushButton(frame);
-        playpage->setObjectName(QStringLiteral("playpage"));
-        sizePolicy1.setHeightForWidth(playpage->sizePolicy().hasHeightForWidth());
-        playpage->setSizePolicy(sizePolicy1);
-        QIcon icon2;
-        icon2.addFile(QStringLiteral(":/image/fm.jpg"), QSize(), QIcon::Normal, QIcon::Off);
-        playpage->setIcon(icon2);
-        playpage->setIconSize(QSize(170, 170));
-
-        horizontalLayout->addWidget(playpage);
-
+        gridLayout_2 = new QGridLayout(frame);
+        gridLayout_2->setSpacing(6);
+        gridLayout_2->setContentsMargins(11, 11, 11, 11);
+        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         widget = new QWidget(frame);
         widget->setObjectName(QStringLiteral("widget"));
         sizePolicy3.setHeightForWidth(widget->sizePolicy().hasHeightForWidth());
@@ -182,38 +194,67 @@ public:
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
         name = new QLabel(widget);
         name->setObjectName(QStringLiteral("name"));
+        QSizePolicy sizePolicy5(QSizePolicy::Maximum, QSizePolicy::Minimum);
+        sizePolicy5.setHorizontalStretch(0);
+        sizePolicy5.setVerticalStretch(0);
+        sizePolicy5.setHeightForWidth(name->sizePolicy().hasHeightForWidth());
+        name->setSizePolicy(sizePolicy5);
 
         verticalLayout_3->addWidget(name);
 
-        player = new QLabel(widget);
-        player->setObjectName(QStringLiteral("player"));
+        songer = new QLabel(widget);
+        songer->setObjectName(QStringLiteral("songer"));
+        sizePolicy2.setHeightForWidth(songer->sizePolicy().hasHeightForWidth());
+        songer->setSizePolicy(sizePolicy2);
 
-        verticalLayout_3->addWidget(player);
+        verticalLayout_3->addWidget(songer);
 
 
-        horizontalLayout->addWidget(widget);
+        gridLayout_2->addWidget(widget, 2, 1, 1, 1);
 
         play = new QPushButton(frame);
         play->setObjectName(QStringLiteral("play"));
         sizePolicy1.setHeightForWidth(play->sizePolicy().hasHeightForWidth());
         play->setSizePolicy(sizePolicy1);
-        QIcon icon3;
-        icon3.addFile(QStringLiteral(":/image/play.jpg"), QSize(), QIcon::Normal, QIcon::Off);
-        play->setIcon(icon3);
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/image/pause.jpg"), QSize(), QIcon::Normal, QIcon::Off);
+        play->setIcon(icon2);
         play->setIconSize(QSize(170, 170));
 
-        horizontalLayout->addWidget(play);
+        gridLayout_2->addWidget(play, 2, 5, 1, 1);
+
+        horizontalSlider = new QSlider(frame);
+        horizontalSlider->setObjectName(QStringLiteral("horizontalSlider"));
+        horizontalSlider->setOrientation(Qt::Horizontal);
+
+        gridLayout_2->addWidget(horizontalSlider, 0, 0, 1, 6);
 
         menu = new QPushButton(frame);
         menu->setObjectName(QStringLiteral("menu"));
         sizePolicy1.setHeightForWidth(menu->sizePolicy().hasHeightForWidth());
         menu->setSizePolicy(sizePolicy1);
-        QIcon icon4;
-        icon4.addFile(QStringLiteral(":/image/menu.jpg"), QSize(), QIcon::Normal, QIcon::Off);
-        menu->setIcon(icon4);
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/image/menu.jpg"), QSize(), QIcon::Normal, QIcon::Off);
+        menu->setIcon(icon3);
         menu->setIconSize(QSize(170, 170));
 
-        horizontalLayout->addWidget(menu);
+        gridLayout_2->addWidget(menu, 2, 6, 1, 1);
+
+        playpage = new QPushButton(frame);
+        playpage->setObjectName(QStringLiteral("playpage"));
+        sizePolicy1.setHeightForWidth(playpage->sizePolicy().hasHeightForWidth());
+        playpage->setSizePolicy(sizePolicy1);
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/image/fm.jpg"), QSize(), QIcon::Normal, QIcon::Off);
+        playpage->setIcon(icon4);
+        playpage->setIconSize(QSize(170, 170));
+
+        gridLayout_2->addWidget(playpage, 2, 0, 1, 1);
+
+        time = new QLabel(frame);
+        time->setObjectName(QStringLiteral("time"));
+
+        gridLayout_2->addWidget(time, 0, 6, 1, 1);
 
 
         verticalLayout->addWidget(frame);
@@ -230,13 +271,14 @@ public:
         set->setText(QString());
         notice->setText(QApplication::translate("MainWidget", "MD\351\237\263\344\271\220\342\200\224\342\200\224\345\260\261\346\230\257\345\205\215\350\264\271", Q_NULLPTR));
         inputEdit->setInputMask(QString());
-        inputEdit->setText(QString());
+        inputEdit->setText(QApplication::translate("MainWidget", "\351\202\223\347\264\253\346\243\213", Q_NULLPTR));
         sort->setText(QString());
-        playpage->setText(QString());
         name->setText(QApplication::translate("MainWidget", "\345\205\211\345\271\264\344\271\213\345\244\226", Q_NULLPTR));
-        player->setText(QApplication::translate("MainWidget", "\351\202\223\347\264\253\346\243\213", Q_NULLPTR));
+        songer->setText(QApplication::translate("MainWidget", "\351\202\223\347\264\253\346\243\213", Q_NULLPTR));
         play->setText(QString());
         menu->setText(QString());
+        playpage->setText(QString());
+        time->setText(QApplication::translate("MainWidget", "--:--/--:--", Q_NULLPTR));
     } // retranslateUi
 
 };

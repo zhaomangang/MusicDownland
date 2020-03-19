@@ -11,16 +11,8 @@
 #include <QFile>
 #include<QVector>
 #include <QMediaPlayer>
-
-typedef struct{
-    QString name;
-    QString songer;
-    QString id;
-    QString url_2000;
-    QString url_320;
-    QString url_128;
-
-}MUsic;
+#include "music.h"
+#include "play.h"
 namespace Ui {
 class MainWidget;
 }
@@ -35,6 +27,8 @@ public:
     void init();
     void showResult();
     void sort();
+
+    QString md5Result(MUsic music);
 private:
     Ui::MainWidget *ui;
     QStandardItemModel *standItemModel;
@@ -42,9 +36,24 @@ private:
     QVector <MUsic> result_list;
     QString request_type;
     QString result;
+    Play *musicplay;
+    int urlindex;
+    QString timeall;
 private slots:
+     void updateDuration(qint64 duration);//更新播放歌曲的时间
+     void updatePosition(qint64 position);//接收歌曲位置改变，那么滑块的位置也要变
      void oneProcessFinished(QNetworkReply*);
      void on_sort_clicked();
+     void slotRequestUrl();
+     void on_horizontalSlider_sliderMoved(int position);
+
+     void on_menu_clicked();
+     void changePlay();
+     void on_play_clicked();
+     void slotPlayOne();
+
+signals:
+     void nextUrl();
 };
 
 #endif // MAINWIDGET_H

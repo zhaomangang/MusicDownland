@@ -1,7 +1,7 @@
 #include "mainwidget.h"
 #include <QApplication>
 #include <QDesktopWidget>
-
+#include "data.h"
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

@@ -18,6 +18,7 @@
 <item>Qt5Gui</item>
 <item>Qt5Multimedia</item>
 <item>Qt5Widgets</item>
+<item>Qt5Sql</item>
 
      </array>
 
@@ -35,6 +36,7 @@
 <item>libplugins_mediaservice_libqtmedia_android.so:plugins/mediaservice/libqtmedia_android.so</item>
 <item>libplugins_audio_libqtaudio_opensles.so:plugins/audio/libqtaudio_opensles.so</item>
 <item>libplugins_playlistformats_libqtmultimedia_m3u.so:plugins/playlistformats/libqtmultimedia_m3u.so</item>
+<item>libplugins_sqldrivers_libqsqlite.so:plugins/sqldrivers/libqsqlite.so</item>
 
     </array>
     <array name="bundled_in_assets">

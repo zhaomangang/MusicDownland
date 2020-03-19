@@ -1,10 +1,15 @@
 <RCC>
     <qresource prefix="/">
         <file>image/fm.jpg</file>
-        <file>image/pause.jpg</file>
-        <file>image/play.jpg</file>
         <file>image/set.jpg</file>
         <file>image/sort.jpg</file>
         <file>image/menu.jpg</file>
+        <file>image/danqu.png</file>
+        <file>image/suiji.jpg</file>
+        <file>image/xunhuan.png</file>
+        <file>image/pause.jpg</file>
+        <file>image/play.jpg</file>
+        <file>image/vol-.png</file>
+        <file>image/vol+.png</file>
     </qresource>
 </RCC>
