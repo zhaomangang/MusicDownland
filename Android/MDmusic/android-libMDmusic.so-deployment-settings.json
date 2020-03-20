@@ -9,6 +9,7 @@
    "toolchain-version": "4.9",
    "ndk-host": "windows",
    "target-architecture": "armeabi-v7a",
+   "android-package-source-directory": "D:/code/MusicDownland/Android/MDmusic/android",
    "qml-root-path": "D:/code/MusicDownland/Android/MDmusic",
    "application-binary": "D:/code/MusicDownland/Android/MDmusic/libMDmusic.so"
 }

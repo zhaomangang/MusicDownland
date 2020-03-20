@@ -11,5 +11,6 @@
         <file>image/play.jpg</file>
         <file>image/vol-.png</file>
         <file>image/vol+.png</file>
+        <file>image/befor.jpg</file>
     </qresource>
 </RCC>

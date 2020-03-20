@@ -13,8 +13,9 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QFrame>
 #include <QtWidgets/QHeaderView>
-#include <QtWidgets/QTableView>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -22,16 +23,22 @@ QT_BEGIN_NAMESPACE
 class Ui_Menu
 {
 public:
-    QTableView *tableView;
+    QFrame *frame;
+    QLabel *label;
 
     void setupUi(QWidget *Menu)
     {
         if (Menu->objectName().isEmpty())
             Menu->setObjectName(QStringLiteral("Menu"));
         Menu->resize(400, 300);
-        tableView = new QTableView(Menu);
-        tableView->setObjectName(QStringLiteral("tableView"));
-        tableView->setGeometry(QRect(90, 70, 256, 192));
+        frame = new QFrame(Menu);
+        frame->setObjectName(QStringLiteral("frame"));
+        frame->setGeometry(QRect(60, 10, 261, 101));
+        frame->setFrameShape(QFrame::StyledPanel);
+        frame->setFrameShadow(QFrame::Raised);
+        label = new QLabel(frame);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(60, 40, 71, 31));
 
         retranslateUi(Menu);
 
@@ -41,6 +48,7 @@ public:
     void retranslateUi(QWidget *Menu)
     {
         Menu->setWindowTitle(QApplication::translate("Menu", "Form", Q_NULLPTR));
+        label->setText(QApplication::translate("Menu", "\345\205\263\344\272\216", Q_NULLPTR));
     } // retranslateUi
 
 };

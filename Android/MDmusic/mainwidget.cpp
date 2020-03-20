@@ -8,6 +8,9 @@ MainWidget::MainWidget(QWidget *parent) :
     ui->setupUi(this);
     manage = new QNetworkAccessManager(this);       //分配空间
     connect(manage,SIGNAL(finished(QNetworkReply*)),this,SLOT(oneProcessFinished(QNetworkReply*)));
+    request_type = "NOTICE";
+    manage->get(QNetworkRequest(QUrl("http://47.99.95.58/mdfire/notice.txt")));
+
     musicplay = new Play();
     musicplay->hide();
     urlindex = 0;
@@ -17,7 +20,9 @@ MainWidget::MainWidget(QWidget *parent) :
     connect(musicplay->player,&QMediaPlayer::durationChanged,this,&MainWidget::updateDuration);
     connect(musicplay,&Play::playChanged,this,&MainWidget::changePlay);
     connect(musicplay,&Play::playOne,this,&MainWidget::slotPlayOne);
-connect(musicplay,&Play::begin,this,&MainWidget::slotPlayOne);
+    connect(musicplay,&Play::begin,this,&MainWidget::slotPlayOne);
+    connect(musicplay,&Play::downland,this,&MainWidget::slotDownland);
+    connect(this,&MainWidget::downNext,this,&MainWidget::slotDownland);
     init();
 
 
@@ -92,6 +97,10 @@ void MainWidget::showResult()
 void MainWidget::sort()
 {
    result_list.clear();
+   if(!result.contains(";",Qt::CaseSensitive)){
+       QMessageBox::warning(this,QStringLiteral("提示"),QStringLiteral("未搜索到内容，请检查输入是否合法"));
+        return;
+   }
    QStringList list = result.split("\n");
    for(int i=0;i<list.size();i++)
    {
@@ -176,17 +185,103 @@ void MainWidget::slotRequestUrl()
 
     }
 }
+void MainWidget::showNotice()
+{
+    //QString temp = result
+    QString notice = result;
+    if(notice.contains("时间",Qt::CaseSensitive))
+        QMessageBox::warning(this,QStringLiteral("公告"),notice);
+    request_type="";
+}
+void MainWidget::anaylizeFire()
+{
+    //QString re = result;
+    QStringList list = result.split(";");
+    for(int i=1;i<list.size();i++)
+    {
+        MUsic temp;
+        temp.id = i;
+        temp.name = list.at(i);
+        temp.url_320 = QString("http://47.99.95.58/mdfire/mp3/%1.mp3").arg(list.at(i));
+        temp.songer = "每日推荐";
+        result_list.append(temp);
+    }
+    showResult();
+
+}
 void MainWidget::oneProcessFinished(QNetworkReply *reply)
 {
-    result = reply->readAll();
+    if("DOWNLAND"!=request_type)
+    {
+        result = reply->readAll();
+
+    }
+
     if("SORT" == request_type){
         sort();
     }else if("GETURL"==request_type){
         emit nextUrl();
 
-    }else{
+    }else if("NOTICE"==request_type){
+        request_type = "FIRELIST";
+        //result = reply->readAll();
+        qDebug()<<"notice line 234"<<result;
+        QStringList list = result.split(";");
+        qDebug()<<"line 230"<<list.at(1);
+        if(result.contains("时间",Qt::CaseSensitive))
+                QMessageBox::warning(this,QStringLiteral("公告"),list.at(1));
+
+        //请求排行榜
+       manage->get(QNetworkRequest(QUrl("http://47.99.95.58/mdfire/list.txt")));
+
+
+
+    }else if("DOWNLAND"==request_type){
+        QString filepath = QString("%1%2_%3.mp3").arg(musicplay->savePath).arg(musicplay->down_list.at(index_down).name).arg(musicplay->down_list.at(index_down).songer);
+        qDebug()<<filepath;
+        QFile file(filepath);
+        if (file.open(QIODevice::WriteOnly))
+        {
+            file.write(reply->readAll());
+            index_down++;
+            file.close();
+        }
+        downNext();
+    }else if("FIRELIST"==request_type){
+        anaylizeFire();
+    }
+    else{
+        emit downNext();
         qDebug()<<"result"<<result;
     }
+
+}
+
+void MainWidget::slotDownland()
+{
+    //下载
+    if(request_type!="DOWNLAND")
+    {
+        //play触发
+        request_type = "DOWNLAND";
+        index_down = 0;
+    }else{
+        //下一个歌
+
+
+    }
+    musicplay->progressSetValue(index_down);
+    if(index_down<musicplay->down_list.size())
+    {
+        manage->get(QNetworkRequest(QUrl(musicplay->down_list.at(index_down).url_320)));
+    }else{
+        //下载完成
+        musicplay->down_list.clear();
+        //QMessageBox::warning(this,QStringLiteral("提示"),QStringLiteral("列表歌曲已下载完成"));
+    }
+
+
+
 
 }
 
@@ -246,7 +341,7 @@ void MainWidget::changePlay()
 }
 void MainWidget::slotPlayOne()
 {
-    qDebug()<<"slot play one";
+    qDebug()<<"slot play one"<<musicplay->playNow.name;
     ui->play->setIcon(QIcon(QPixmap(":/image/play.jpg")));
     ui->name->setText(musicplay->playNow.name);
     ui->songer->setText(musicplay->playNow.songer);
@@ -276,4 +371,9 @@ void MainWidget::on_play_clicked()
         ui->play->setIcon(QIcon(QPixmap(":/image/play.jpg")));
     }
 
+}
+
+void MainWidget::on_set_clicked()
+{
+    QMessageBox::warning(this,"",QStringLiteral("待完善"));
 }

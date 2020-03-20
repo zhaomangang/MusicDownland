@@ -1,0 +1,13 @@
+INPUT(
+./release\main.o
+./release\mainwidget.o
+./release\play.o
+./release\menu.o
+./release\data.o
+./release\notice.o
+./release\qrc_src.o
+./release\moc_mainwidget.o
+./release\moc_play.o
+./release\moc_menu.o
+./release\moc_notice.o
+);

@@ -29,23 +29,37 @@ SOURCES += \
         mainwidget.cpp \
     play.cpp \
     menu.cpp \
-    data.cpp
+    data.cpp \
+    notice.cpp
 
 HEADERS += \
         mainwidget.h \
     play.h \
     music.h \
     menu.h \
-    data.h
+    data.h \
+    notice.h
 
 FORMS += \
         mainwidget.ui \
     play.ui \
-    menu.ui
+    menu.ui \
+    notice.ui
 
 CONFIG += mobility
 MOBILITY = 
 
 RESOURCES += \
     src.qrc
+
+DISTFILES += \
+    android/AndroidManifest.xml \
+    android/gradle/wrapper/gradle-wrapper.jar \
+    android/gradlew \
+    android/res/values/libs.xml \
+    android/build.gradle \
+    android/gradle/wrapper/gradle-wrapper.properties \
+    android/gradlew.bat
+
+ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 

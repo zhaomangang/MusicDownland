@@ -9,12 +9,26 @@
 #include <QSqlQuery>    //sql语句
 #include "music.h"
 #include <QVector>
+/**
+
+# 榜单歌曲批量下载
+# r = requests.get('http://music.163.com/api/playlist/detail?id=2884035')  # 网易原创歌曲榜
+# r = requests.get('http://music.163.com/api/playlist/detail?id=19723756') # 云音乐飙升榜
+# r = requests.get('http://music.163.com/api/playlist/detail?id=3778678')  # 云音乐热歌榜
+#r = requests.get('http://music.163.com/api/playlist/detail?id=3779629')    # 云音乐新歌榜
+
+# 歌单歌曲批量下载
+# r = requests.get('http://music.163.com/api/playlist/detail?id=123415635')    # 云音乐歌单——【华语】中国风的韵律，中国人的印记
+# r = requests.get('http://music.163.com/api/playlist/detail?id=122732380')    # 云音乐歌单——那不是爱，只是寂寞说的谎
+
+**/
 Play::Play(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Play)
 {
 
     ui->setupUi(this);
+    ui->progressBar->hide();
     player = new QMediaPlayer;
     mode = "XUNHUAN";
     connect(player, SIGNAL(positionChanged(qint64)), this, SLOT(positionChanged(qint64)));
@@ -51,9 +65,19 @@ Play::Play(QWidget *parent) :
         }
         //query.exec("insert into musiclist(id, name, songer,url) values('sad','na','','');");
 
-
+        QFile file("config.txt");
+        if (file.open(QIODevice::ReadOnly))
+        {
+            this->savePath = file.readAll();
+        }
+        file.close();
+        savePath = "/data/data/org.qtproject.example.test/";
 
     init();
+    //保存下载功能存在问题，因从先隐藏
+    ui->pushButton_6->hide();
+    ui->pushButton_9->hide();
+
 
 
 }
@@ -95,31 +119,33 @@ void Play::init(){
             temp.songer = query.value("songer").toString();
             music_list.append(temp);
         }
-    if(!music_list.empty()){
+//    if(!music_list.empty()){
 
-        ui->play->setIcon(QIcon(QPixmap(":/image/play.jpg")));
-        playNow = music_list.first();
+//        ui->play->setIcon(QIcon(QPixmap(":/image/play.jpg")));
+//        playNow = music_list.at(0) ;
 
-        playindex = 0;
-        if(music_list.first().url_2000!=""){
-            player->setMedia(QUrl(music_list.first().url_2000));
-        }else if(music_list.first().url_320!=""){
-            player->setMedia(QUrl(music_list.first().url_320));
-        }else if(music_list.first().url_128!=""){
-            player->setMedia(QUrl(music_list.first().url_128));
-        }else{
+//        playindex = 0;
+//        if(music_list.first().url_2000!=""){
+//            player->setMedia(QUrl(music_list.first().url_2000));
+//        }else if(music_list.first().url_320!=""){
+//            player->setMedia(QUrl(music_list.first().url_320));
+//        }else if(music_list.first().url_128!=""){
+//            player->setMedia(QUrl(music_list.first().url_128));
+//        }else{
 
-        }
+//        }
 
-        player->play();
-        emit playOne();
-        this->updateNowUi(music_list.first().name,music_list.first().songer);
+//        player->play();
+//        emit playOne();
+//        qDebug()<<"发送成功";
+//        this->updateNowUi(music_list.first().name,music_list.first().songer);
 
-    }
+//    }
     updateViewList();
 }
 void Play::updateViewList()
 {
+
 
     for(int i=0;i<music_list.size();i++)
     {
@@ -139,6 +165,7 @@ void Play::updateViewList()
 
                 qDebug()<<"else";
                 player->stop();
+                this->playNow = music_list.at(i);
                 playNow = music_list.at(i);
                 player->setMedia(QUrl(music_list.at(i).url_320));
                 player->play();
@@ -167,7 +194,7 @@ void Play::updateViewList()
 
                );
          listen_PushButton->setText(QStringLiteral("播放"));
-         remove_PushButton->setText(QStringLiteral("remove"));
+         remove_PushButton->setText(QStringLiteral("移除"));
          ui->musicList->setIndexWidget(standItemModel->index(i,2),listen_PushButton);    //向表格单元添加一个控件
          ui->musicList->setIndexWidget(standItemModel->index(i,3),remove_PushButton);
 
@@ -375,6 +402,71 @@ void Play::on_pushButton_7_clicked()
     }
     if(sta){
         QMessageBox::warning(this,QStringLiteral("提示"),QStringLiteral("列表保存成功，下次打开程序将自动加载"));
+    }
+
+}
+void Play::progressSetValue(int va)
+{
+    ui->progressBar->setValue(va+1);
+}
+void Play::on_pushButton_6_clicked()
+{
+    //下载
+    ui->progressBar->setMaximum(music_list.size()+1);
+    ui->progressBar->setValue(1);
+    ui->progressBar->show();
+    for(int i=0;i<music_list.size();i++)
+    {
+        down_list.append(music_list.at(i));
+    }
+
+    emit downland();
+
+}
+
+void Play::on_pushButton_5_clicked()
+{
+    //清空列表
+    music_list.clear();
+    freshViewList();
+
+}
+
+void Play::on_pushButton_8_clicked()
+{
+    QSqlQuery query;
+    if(query.exec("delete from musiclist"))
+    {
+        QMessageBox::warning(this,QStringLiteral("提示"),QStringLiteral("已删除本地保存的播放列表"));
+    }
+
+
+}
+
+void Play::on_pushButton_9_clicked()
+{
+    //下载设置
+    QFileDialog* fileDialog = new QFileDialog();
+    fileDialog->setWindowTitle("Choose Directory");
+    //fd->setDirectory(buf);
+    fileDialog->setFileMode( QFileDialog::DirectoryOnly );
+    fileDialog->setDirectory("/storage/emulated/0/UIDdate");
+    if ( fileDialog->exec() == QDialog::Accepted )
+    {
+        savePath = fileDialog->selectedFiles().last();
+        //srcDir.setPath(fileName.at(0));
+        savePath.append('/');
+        //qDebug()<<path;
+        QFile file("config.txt");
+        if (file.open(QIODevice::WriteOnly))
+        {
+            file.write(savePath.toStdString().c_str());
+        }
+        file.close();
+    }
+    else
+    {
+     return;
     }
 
 }

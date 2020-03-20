@@ -1,0 +1,13 @@
+INPUT(
+./debug\main.o
+./debug\mainwidget.o
+./debug\play.o
+./debug\menu.o
+./debug\data.o
+./debug\notice.o
+./debug\qrc_src.o
+./debug\moc_mainwidget.o
+./debug\moc_play.o
+./debug\moc_menu.o
+./debug\moc_notice.o
+);

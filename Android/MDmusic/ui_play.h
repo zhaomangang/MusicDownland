@@ -19,6 +19,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QProgressBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSlider>
 #include <QtWidgets/QTableView>
@@ -41,11 +42,14 @@ public:
     QVBoxLayout *verticalLayout_2;
     QLabel *label_2;
     QTableView *musicList;
+    QProgressBar *progressBar;
     QFrame *frame_3;
     QGridLayout *gridLayout_3;
     QPushButton *pushButton_5;
-    QPushButton *pushButton_6;
     QPushButton *pushButton_7;
+    QPushButton *pushButton_6;
+    QPushButton *pushButton_8;
+    QPushButton *pushButton_9;
     QFrame *frame_4;
     QGridLayout *gridLayout_2;
     QLabel *time;
@@ -54,27 +58,32 @@ public:
     QVBoxLayout *verticalLayout_4;
     QPushButton *pushButton_4;
     QPushButton *pushButton_3;
+    QPushButton *pushButton;
+    QPushButton *play;
     QWidget *widget;
     QVBoxLayout *verticalLayout_3;
     QLabel *name;
     QLabel *songer;
-    QPushButton *pushButton;
-    QPushButton *play;
 
     void setupUi(QWidget *Play)
     {
         if (Play->objectName().isEmpty())
             Play->setObjectName(QStringLiteral("Play"));
         Play->resize(626, 462);
+        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(Play->sizePolicy().hasHeightForWidth());
+        Play->setSizePolicy(sizePolicy);
         verticalLayout = new QVBoxLayout(Play);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         frame = new QFrame(Play);
         frame->setObjectName(QStringLiteral("frame"));
-        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(frame->sizePolicy().hasHeightForWidth());
-        frame->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Maximum);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(frame->sizePolicy().hasHeightForWidth());
+        frame->setSizePolicy(sizePolicy1);
         frame->setFrameShape(QFrame::StyledPanel);
         frame->setFrameShadow(QFrame::Raised);
         gridLayout = new QGridLayout(frame);
@@ -115,11 +124,8 @@ public:
 
         musicList = new QTableView(frame_2);
         musicList->setObjectName(QStringLiteral("musicList"));
-        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(musicList->sizePolicy().hasHeightForWidth());
-        musicList->setSizePolicy(sizePolicy1);
+        sizePolicy.setHeightForWidth(musicList->sizePolicy().hasHeightForWidth());
+        musicList->setSizePolicy(sizePolicy);
         musicList->horizontalHeader()->setVisible(false);
         musicList->horizontalHeader()->setCascadingSectionResizes(false);
         musicList->horizontalHeader()->setDefaultSectionSize(220);
@@ -138,37 +144,76 @@ public:
 
         verticalLayout->addWidget(frame_2);
 
+        progressBar = new QProgressBar(Play);
+        progressBar->setObjectName(QStringLiteral("progressBar"));
+        QSizePolicy sizePolicy2(QSizePolicy::Ignored, QSizePolicy::Fixed);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(progressBar->sizePolicy().hasHeightForWidth());
+        progressBar->setSizePolicy(sizePolicy2);
+        progressBar->setValue(24);
+
+        verticalLayout->addWidget(progressBar);
+
         frame_3 = new QFrame(Play);
         frame_3->setObjectName(QStringLiteral("frame_3"));
+        QSizePolicy sizePolicy3(QSizePolicy::Minimum, QSizePolicy::Preferred);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(frame_3->sizePolicy().hasHeightForWidth());
+        frame_3->setSizePolicy(sizePolicy3);
         frame_3->setFrameShape(QFrame::StyledPanel);
         frame_3->setFrameShadow(QFrame::Raised);
         gridLayout_3 = new QGridLayout(frame_3);
         gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
         pushButton_5 = new QPushButton(frame_3);
         pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
+        QSizePolicy sizePolicy4(QSizePolicy::Minimum, QSizePolicy::Fixed);
+        sizePolicy4.setHorizontalStretch(0);
+        sizePolicy4.setVerticalStretch(0);
+        sizePolicy4.setHeightForWidth(pushButton_5->sizePolicy().hasHeightForWidth());
+        pushButton_5->setSizePolicy(sizePolicy4);
 
-        gridLayout_3->addWidget(pushButton_5, 0, 2, 1, 1);
-
-        pushButton_6 = new QPushButton(frame_3);
-        pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
-
-        gridLayout_3->addWidget(pushButton_6, 0, 0, 1, 1);
+        gridLayout_3->addWidget(pushButton_5, 0, 3, 1, 1);
 
         pushButton_7 = new QPushButton(frame_3);
         pushButton_7->setObjectName(QStringLiteral("pushButton_7"));
+        sizePolicy4.setHeightForWidth(pushButton_7->sizePolicy().hasHeightForWidth());
+        pushButton_7->setSizePolicy(sizePolicy4);
 
-        gridLayout_3->addWidget(pushButton_7, 0, 1, 1, 1);
+        gridLayout_3->addWidget(pushButton_7, 0, 2, 1, 1);
+
+        pushButton_6 = new QPushButton(frame_3);
+        pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
+        sizePolicy4.setHeightForWidth(pushButton_6->sizePolicy().hasHeightForWidth());
+        pushButton_6->setSizePolicy(sizePolicy4);
+
+        gridLayout_3->addWidget(pushButton_6, 0, 1, 1, 1);
+
+        pushButton_8 = new QPushButton(frame_3);
+        pushButton_8->setObjectName(QStringLiteral("pushButton_8"));
+        sizePolicy4.setHeightForWidth(pushButton_8->sizePolicy().hasHeightForWidth());
+        pushButton_8->setSizePolicy(sizePolicy4);
+
+        gridLayout_3->addWidget(pushButton_8, 0, 4, 1, 1);
+
+        pushButton_9 = new QPushButton(frame_3);
+        pushButton_9->setObjectName(QStringLiteral("pushButton_9"));
+        sizePolicy4.setHeightForWidth(pushButton_9->sizePolicy().hasHeightForWidth());
+        pushButton_9->setSizePolicy(sizePolicy4);
+
+        gridLayout_3->addWidget(pushButton_9, 0, 0, 1, 1);
 
 
         verticalLayout->addWidget(frame_3);
 
         frame_4 = new QFrame(Play);
         frame_4->setObjectName(QStringLiteral("frame_4"));
-        QSizePolicy sizePolicy2(QSizePolicy::Minimum, QSizePolicy::Minimum);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(frame_4->sizePolicy().hasHeightForWidth());
-        frame_4->setSizePolicy(sizePolicy2);
+        QSizePolicy sizePolicy5(QSizePolicy::Preferred, QSizePolicy::Minimum);
+        sizePolicy5.setHorizontalStretch(0);
+        sizePolicy5.setVerticalStretch(0);
+        sizePolicy5.setHeightForWidth(frame_4->sizePolicy().hasHeightForWidth());
+        frame_4->setSizePolicy(sizePolicy5);
         frame_4->setFrameShape(QFrame::StyledPanel);
         frame_4->setFrameShadow(QFrame::Raised);
         gridLayout_2 = new QGridLayout(frame_4);
@@ -190,11 +235,11 @@ public:
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
         pushButton_4 = new QPushButton(widget_2);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
-        QSizePolicy sizePolicy3(QSizePolicy::Maximum, QSizePolicy::Maximum);
-        sizePolicy3.setHorizontalStretch(0);
-        sizePolicy3.setVerticalStretch(0);
-        sizePolicy3.setHeightForWidth(pushButton_4->sizePolicy().hasHeightForWidth());
-        pushButton_4->setSizePolicy(sizePolicy3);
+        QSizePolicy sizePolicy6(QSizePolicy::Maximum, QSizePolicy::Maximum);
+        sizePolicy6.setHorizontalStretch(0);
+        sizePolicy6.setVerticalStretch(0);
+        sizePolicy6.setHeightForWidth(pushButton_4->sizePolicy().hasHeightForWidth());
+        pushButton_4->setSizePolicy(sizePolicy6);
         QIcon icon;
         icon.addFile(QStringLiteral(":/image/vol+.png"), QSize(), QIcon::Normal, QIcon::Off);
         pushButton_4->setIcon(icon);
@@ -204,8 +249,8 @@ public:
 
         pushButton_3 = new QPushButton(widget_2);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-        sizePolicy3.setHeightForWidth(pushButton_3->sizePolicy().hasHeightForWidth());
-        pushButton_3->setSizePolicy(sizePolicy3);
+        sizePolicy6.setHeightForWidth(pushButton_3->sizePolicy().hasHeightForWidth());
+        pushButton_3->setSizePolicy(sizePolicy6);
         QIcon icon1;
         icon1.addFile(QStringLiteral(":/image/vol-.png"), QSize(), QIcon::Normal, QIcon::Off);
         pushButton_3->setIcon(icon1);
@@ -216,33 +261,10 @@ public:
 
         gridLayout_2->addWidget(widget_2, 2, 7, 1, 1);
 
-        widget = new QWidget(frame_4);
-        widget->setObjectName(QStringLiteral("widget"));
-        sizePolicy2.setHeightForWidth(widget->sizePolicy().hasHeightForWidth());
-        widget->setSizePolicy(sizePolicy2);
-        verticalLayout_3 = new QVBoxLayout(widget);
-        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
-        name = new QLabel(widget);
-        name->setObjectName(QStringLiteral("name"));
-        sizePolicy2.setHeightForWidth(name->sizePolicy().hasHeightForWidth());
-        name->setSizePolicy(sizePolicy2);
-
-        verticalLayout_3->addWidget(name);
-
-        songer = new QLabel(widget);
-        songer->setObjectName(QStringLiteral("songer"));
-        sizePolicy2.setHeightForWidth(songer->sizePolicy().hasHeightForWidth());
-        songer->setSizePolicy(sizePolicy2);
-
-        verticalLayout_3->addWidget(songer);
-
-
-        gridLayout_2->addWidget(widget, 2, 1, 1, 1);
-
         pushButton = new QPushButton(frame_4);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        sizePolicy3.setHeightForWidth(pushButton->sizePolicy().hasHeightForWidth());
-        pushButton->setSizePolicy(sizePolicy3);
+        sizePolicy6.setHeightForWidth(pushButton->sizePolicy().hasHeightForWidth());
+        pushButton->setSizePolicy(sizePolicy6);
         QIcon icon2;
         icon2.addFile(QStringLiteral(":/image/xunhuan.png"), QSize(), QIcon::Normal, QIcon::Off);
         pushButton->setIcon(icon2);
@@ -252,14 +274,40 @@ public:
 
         play = new QPushButton(frame_4);
         play->setObjectName(QStringLiteral("play"));
-        sizePolicy3.setHeightForWidth(play->sizePolicy().hasHeightForWidth());
-        play->setSizePolicy(sizePolicy3);
+        sizePolicy6.setHeightForWidth(play->sizePolicy().hasHeightForWidth());
+        play->setSizePolicy(sizePolicy6);
         QIcon icon3;
         icon3.addFile(QStringLiteral(":/image/pause.jpg"), QSize(), QIcon::Normal, QIcon::Off);
         play->setIcon(icon3);
         play->setIconSize(QSize(170, 170));
 
         gridLayout_2->addWidget(play, 2, 5, 1, 1);
+
+        widget = new QWidget(frame_4);
+        widget->setObjectName(QStringLiteral("widget"));
+        QSizePolicy sizePolicy7(QSizePolicy::Ignored, QSizePolicy::Minimum);
+        sizePolicy7.setHorizontalStretch(0);
+        sizePolicy7.setVerticalStretch(0);
+        sizePolicy7.setHeightForWidth(widget->sizePolicy().hasHeightForWidth());
+        widget->setSizePolicy(sizePolicy7);
+        verticalLayout_3 = new QVBoxLayout(widget);
+        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        name = new QLabel(widget);
+        name->setObjectName(QStringLiteral("name"));
+        sizePolicy7.setHeightForWidth(name->sizePolicy().hasHeightForWidth());
+        name->setSizePolicy(sizePolicy7);
+
+        verticalLayout_3->addWidget(name);
+
+        songer = new QLabel(widget);
+        songer->setObjectName(QStringLiteral("songer"));
+        sizePolicy7.setHeightForWidth(songer->sizePolicy().hasHeightForWidth());
+        songer->setSizePolicy(sizePolicy7);
+
+        verticalLayout_3->addWidget(songer);
+
+
+        gridLayout_2->addWidget(widget, 2, 0, 1, 4);
 
 
         verticalLayout->addWidget(frame_4);
@@ -273,19 +321,27 @@ public:
     void retranslateUi(QWidget *Play)
     {
         Play->setWindowTitle(QApplication::translate("Play", "Form", Q_NULLPTR));
-        pushButton_2->setText(QApplication::translate("Play", "PushButton", Q_NULLPTR));
+        pushButton_2->setText(QApplication::translate("Play", "\345\257\274\345\205\245", Q_NULLPTR));
+        comboBox->clear();
+        comboBox->insertItems(0, QStringList()
+         << QApplication::translate("Play", "\347\275\221\346\230\223\344\272\221", Q_NULLPTR)
+         << QApplication::translate("Play", "QQ\351\237\263\344\271\220", Q_NULLPTR)
+         << QString()
+        );
         label->setText(QApplication::translate("Play", "\345\257\274\345\205\245\346\255\214\345\215\225", Q_NULLPTR));
         label_2->setText(QApplication::translate("Play", "\345\275\223\345\211\215\346\222\255\346\224\276\345\210\227\350\241\250", Q_NULLPTR));
         pushButton_5->setText(QApplication::translate("Play", "\346\270\205\347\251\272\345\210\227\350\241\250", Q_NULLPTR));
+        pushButton_7->setText(QApplication::translate("Play", "\344\277\235\345\255\230\346\255\214\345\215\225", Q_NULLPTR));
         pushButton_6->setText(QApplication::translate("Play", "\344\270\213\350\275\275\346\211\200\346\234\211", Q_NULLPTR));
-        pushButton_7->setText(QApplication::translate("Play", "\344\277\235\345\255\230\345\210\227\350\241\250", Q_NULLPTR));
+        pushButton_8->setText(QApplication::translate("Play", "\346\270\205\347\251\272\346\234\254\345\234\260\346\255\214\345\215\225", Q_NULLPTR));
+        pushButton_9->setText(QApplication::translate("Play", "\344\270\213\350\275\275\350\267\257\345\276\204", Q_NULLPTR));
         time->setText(QApplication::translate("Play", "--:--/--:--", Q_NULLPTR));
         pushButton_4->setText(QString());
         pushButton_3->setText(QString());
-        name->setText(QApplication::translate("Play", "\345\205\211\345\271\264\344\271\213\345\244\226", Q_NULLPTR));
-        songer->setText(QApplication::translate("Play", "\351\202\223\347\264\253\346\243\213", Q_NULLPTR));
         pushButton->setText(QString());
         play->setText(QString());
+        name->setText(QApplication::translate("Play", "---------------------", Q_NULLPTR));
+        songer->setText(QApplication::translate("Play", "---------------------", Q_NULLPTR));
     } // retranslateUi
 
 };

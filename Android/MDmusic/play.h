@@ -12,6 +12,7 @@
 #include <QTableView>
 #include<QVector>
 #include <QMediaPlayer>
+#include <QFileDialog>
 #include "music.h"
 namespace Ui {
 class Play;
@@ -24,8 +25,9 @@ class Play : public QWidget
 public:
     explicit Play(QWidget *parent = 0);
     QMediaPlayer *player;
-    MUsic playNow;
+    MUsic playNow;  //用于让MainWidget查看当前播放歌曲
     QVector<MUsic> music_list;
+    QVector<MUsic> down_list;
     ~Play();
     void Transmit(MUsic music);
     void addMusic(MUsic music);
@@ -35,15 +37,17 @@ public:
     void updatePlay(bool who);
     void updateViewList();
     void init();
-
+    void progressSetValue(int va);
+    QString savePath;
 private:
     Ui::Play *ui;
     QStandardItemModel *standItemModel;
 
     quint64 duratime;
     QString timeall;
-    int playindex;
+    int playindex;  //记录循环序列
     QString mode;
+
 
 private slots:
     void slotNext();
@@ -60,12 +64,21 @@ private slots:
 
      void on_pushButton_7_clicked();
 
+     void on_pushButton_6_clicked();
+
+     void on_pushButton_5_clicked();
+
+     void on_pushButton_8_clicked();
+
+     void on_pushButton_9_clicked();
+
 signals:
     void playend();
     void playChanged();
     void playOne();
     void removeOne();
     void begin();
+    void downland();
 
 
 };

@@ -51,7 +51,7 @@ void Downland::on_pushButton_3_clicked()
 
 void Downland::on_pushButton_clicked()
 {
-    QFileDialog* fileDialog = new QFileDialog(this);
+        QFileDialog* fileDialog = new QFileDialog(this);
      fileDialog->setWindowTitle("Choose Directory");
      //fd->setDirectory(buf);
      fileDialog->setFileMode( QFileDialog::DirectoryOnly );

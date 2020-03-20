@@ -11,6 +11,7 @@
 #include <QFile>
 #include<QVector>
 #include <QMediaPlayer>
+#include <QMessageBox>
 #include "music.h"
 #include "play.h"
 namespace Ui {
@@ -29,6 +30,7 @@ public:
     void sort();
 
     QString md5Result(MUsic music);
+    void anaylizeFire();
 private:
     Ui::MainWidget *ui;
     QStandardItemModel *standItemModel;
@@ -39,6 +41,7 @@ private:
     Play *musicplay;
     int urlindex;
     QString timeall;
+    int index_down; //下载序列
 private slots:
      void updateDuration(qint64 duration);//更新播放歌曲的时间
      void updatePosition(qint64 position);//接收歌曲位置改变，那么滑块的位置也要变
@@ -51,9 +54,14 @@ private slots:
      void changePlay();
      void on_play_clicked();
      void slotPlayOne();
+     void showNotice();
+     void slotDownland();
+
+     void on_set_clicked();
 
 signals:
      void nextUrl();
+     void downNext();
 };
 
 #endif // MAINWIDGET_H
