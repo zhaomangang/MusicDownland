@@ -75,6 +75,7 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(Play->sizePolicy().hasHeightForWidth());
         Play->setSizePolicy(sizePolicy);
+        Play->setStyleSheet(QStringLiteral(""));
         verticalLayout = new QVBoxLayout(Play);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         frame = new QFrame(Play);
@@ -84,6 +85,7 @@ public:
         sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(frame->sizePolicy().hasHeightForWidth());
         frame->setSizePolicy(sizePolicy1);
+        frame->setStyleSheet(QStringLiteral("background-image: url(:/image/bg.jpg);"));
         frame->setFrameShape(QFrame::StyledPanel);
         frame->setFrameShadow(QFrame::Raised);
         gridLayout = new QGridLayout(frame);
@@ -113,6 +115,7 @@ public:
 
         frame_2 = new QFrame(Play);
         frame_2->setObjectName(QStringLiteral("frame_2"));
+        frame_2->setStyleSheet(QStringLiteral("background-image: url(:/image/bg.jpg);"));
         frame_2->setFrameShape(QFrame::StyledPanel);
         frame_2->setFrameShadow(QFrame::Raised);
         verticalLayout_2 = new QVBoxLayout(frame_2);
@@ -162,6 +165,7 @@ public:
         sizePolicy3.setVerticalStretch(0);
         sizePolicy3.setHeightForWidth(frame_3->sizePolicy().hasHeightForWidth());
         frame_3->setSizePolicy(sizePolicy3);
+        frame_3->setStyleSheet(QStringLiteral("background-image: url(:/image/bg.jpg);"));
         frame_3->setFrameShape(QFrame::StyledPanel);
         frame_3->setFrameShadow(QFrame::Raised);
         gridLayout_3 = new QGridLayout(frame_3);
@@ -214,6 +218,7 @@ public:
         sizePolicy5.setVerticalStretch(0);
         sizePolicy5.setHeightForWidth(frame_4->sizePolicy().hasHeightForWidth());
         frame_4->setSizePolicy(sizePolicy5);
+        frame_4->setStyleSheet(QStringLiteral("background-image: url(:/image/bg.jpg);"));
         frame_4->setFrameShape(QFrame::StyledPanel);
         frame_4->setFrameShadow(QFrame::Raised);
         gridLayout_2 = new QGridLayout(frame_4);

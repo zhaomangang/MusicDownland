@@ -66,6 +66,7 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(MainWidget->sizePolicy().hasHeightForWidth());
         MainWidget->setSizePolicy(sizePolicy);
+        MainWidget->setStyleSheet(QStringLiteral(""));
         verticalLayout = new QVBoxLayout(MainWidget);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
@@ -77,6 +78,7 @@ public:
         sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(frame_4->sizePolicy().hasHeightForWidth());
         frame_4->setSizePolicy(sizePolicy1);
+        frame_4->setStyleSheet(QStringLiteral("background-image: url(:/image/bg.jpg);"));
         frame_4->setFrameShape(QFrame::StyledPanel);
         frame_4->setFrameShadow(QFrame::Raised);
         gridLayout = new QGridLayout(frame_4);
@@ -104,6 +106,15 @@ public:
         sizePolicy3.setVerticalStretch(0);
         sizePolicy3.setHeightForWidth(notice->sizePolicy().hasHeightForWidth());
         notice->setSizePolicy(sizePolicy3);
+        QFont font;
+        font.setFamily(QString::fromUtf8("\345\215\216\346\226\207\350\241\214\346\245\267"));
+        font.setPointSize(27);
+        font.setBold(true);
+        font.setItalic(false);
+        font.setWeight(75);
+        notice->setFont(font);
+        notice->setTextFormat(Qt::AutoText);
+        notice->setAlignment(Qt::AlignCenter);
 
         gridLayout->addWidget(notice, 0, 0, 2, 1);
 
@@ -117,6 +128,7 @@ public:
         sizePolicy4.setVerticalStretch(0);
         sizePolicy4.setHeightForWidth(frame_2->sizePolicy().hasHeightForWidth());
         frame_2->setSizePolicy(sizePolicy4);
+        frame_2->setStyleSheet(QStringLiteral("background-image: url(:/image/bg.jpg);"));
         frame_2->setFrameShape(QFrame::StyledPanel);
         frame_2->setFrameShadow(QFrame::Raised);
         verticalLayout_2 = new QVBoxLayout(frame_2);
@@ -125,6 +137,7 @@ public:
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         frame_3 = new QFrame(frame_2);
         frame_3->setObjectName(QStringLiteral("frame_3"));
+        frame_3->setStyleSheet(QStringLiteral(""));
         frame_3->setFrameShape(QFrame::StyledPanel);
         frame_3->setFrameShadow(QFrame::Raised);
         horizontalLayout_2 = new QHBoxLayout(frame_3);
@@ -181,6 +194,7 @@ public:
         sizePolicy5.setVerticalStretch(0);
         sizePolicy5.setHeightForWidth(frame->sizePolicy().hasHeightForWidth());
         frame->setSizePolicy(sizePolicy5);
+        frame->setStyleSheet(QStringLiteral("background-image: url(:/image/bg.jpg);"));
         frame->setFrameShape(QFrame::StyledPanel);
         frame->setFrameShadow(QFrame::Raised);
         gridLayout_2 = new QGridLayout(frame);

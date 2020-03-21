@@ -14,6 +14,7 @@
 #include <QMessageBox>
 #include "music.h"
 #include "play.h"
+#include "menu.h"
 namespace Ui {
 class MainWidget;
 }

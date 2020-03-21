@@ -461,18 +461,26 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_src.cpp
 qrc_src.cpp: src.qrc \
 		..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\bin\rcc.exe \
-		image\vol-.png \
-		image\sort.jpg \
-		image\pause.jpg \
-		image\set.jpg \
-		image\xunhuan.png \
-		image\danqu.png \
 		image\play.jpg \
-		image\fm.jpg \
+		image\bg.jpg \
+		image\xunhuan.png \
+		image\set.jpg \
 		image\befor.jpg \
+		image\pay.jpg \
+		image\QQ.png \
+		image\bgbg.jpg \
 		image\menu.jpg \
+		image\fm.jpg \
+		image\sort.jpg \
+		image\suiji.jpg \
+		image\QQ176.png \
 		image\vol+.png \
-		image\suiji.jpg
+		image\header-bg.jpg \
+		image\vol-.png \
+		image\playbg.jpg \
+		image\pause.jpg \
+		image\danqu.png \
+		image\payy.png
 	D:\Qt\Qt5.9.0\5.9\android_armv7\bin\rcc.exe -name src src.qrc -o qrc_src.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h
@@ -969,6 +977,7 @@ moc_mainwidget.cpp: ..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\include\QtWidgets\Q
 		..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\include\QtWidgets\qfiledialog.h \
 		..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\include\QtCore\qdir.h \
 		..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\include\QtCore\qfileinfo.h \
+		menu.h \
 		mainwidget.h \
 		moc_predefs.h \
 		..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\bin\moc.exe
@@ -2859,6 +2868,7 @@ main.obj: main.cpp mainwidget.h \
 		..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\include\QtWidgets\qfiledialog.h \
 		..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\include\QtCore\qdir.h \
 		..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\include\QtCore\qfileinfo.h \
+		menu.h \
 		..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\include\QtWidgets\QApplication \
 		..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\include\QtWidgets\qapplication.h \
 		..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\include\QtCore\qcoreapplication.h \
@@ -3366,6 +3376,7 @@ mainwidget.obj: mainwidget.cpp mainwidget.h \
 		..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\include\QtWidgets\qfiledialog.h \
 		..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\include\QtCore\qdir.h \
 		..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\include\QtCore\qfileinfo.h \
+		menu.h \
 		ui_mainwidget.h \
 		..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\include\QtWidgets\QAction \
 		..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\include\QtWidgets\qaction.h \
@@ -4376,8 +4387,19 @@ menu.obj: menu.cpp menu.h \
 		..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\include\QtWidgets\qtabbar.h \
 		..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\include\QtWidgets\qtabwidget.h \
 		..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\include\QtWidgets\qrubberband.h \
-		..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\include\QtWidgets\QLabel \
-		..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\include\QtWidgets\qlabel.h
+		..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\include\QtWidgets\QTextBrowser \
+		..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\include\QtWidgets\qtextbrowser.h \
+		..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\include\QtWidgets\qtextedit.h \
+		..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\include\QtGui\qtextdocument.h \
+		..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\include\QtGui\qtextoption.h \
+		..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\include\QtGui\qtextcursor.h \
+		..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\include\QtGui\qtextformat.h \
+		..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\include\QtGui\qpen.h \
+		..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\include\QtWidgets\QVBoxLayout \
+		..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\include\QtWidgets\qboxlayout.h \
+		..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\include\QtWidgets\qlayout.h \
+		..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\include\QtWidgets\qlayoutitem.h \
+		..\..\..\..\Qt\Qt5.9.0\5.9\android_armv7\include\QtWidgets\qgridlayout.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o menu.obj menu.cpp
 
 data.obj: data.cpp data.h \

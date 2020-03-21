@@ -20,7 +20,6 @@ MainWidget::MainWidget(QWidget *parent) :
     connect(musicplay->player,&QMediaPlayer::durationChanged,this,&MainWidget::updateDuration);
     connect(musicplay,&Play::playChanged,this,&MainWidget::changePlay);
     connect(musicplay,&Play::playOne,this,&MainWidget::slotPlayOne);
-    connect(musicplay,&Play::begin,this,&MainWidget::slotPlayOne);
     connect(musicplay,&Play::downland,this,&MainWidget::slotDownland);
     connect(this,&MainWidget::downNext,this,&MainWidget::slotDownland);
     init();
@@ -58,7 +57,7 @@ void MainWidget::showResult()
     }
     for(int i=0;i<result_list.size();i++)
     {
-        qDebug()<<"lin56";
+        qDebug()<<"lin56"<<i;
         QPushButton *listen_PushButton=new QPushButton;
         QPushButton *add_PushButton=new QPushButton;
         connect(listen_PushButton,&QPushButton::clicked,
@@ -174,7 +173,7 @@ void MainWidget::slotRequestUrl()
         qDebug()<<"next"<<urlindex;
         manage->get(QNetworkRequest(QUrl(md5Result(result_list.at(urlindex)))));
     }else{
-        request_type = "";
+        request_type = "KONG";
         qDebug()<<"else"<<urlindex;
         delete standItemModel;
         qDebug()<<"line123";
@@ -182,6 +181,7 @@ void MainWidget::slotRequestUrl()
         qDebug()<<"line124";
         showResult();
         ui->progressBar->hide();
+        request_type = "";
 
     }
 }
@@ -251,7 +251,12 @@ void MainWidget::oneProcessFinished(QNetworkReply *reply)
         anaylizeFire();
     }
     else{
-        emit downNext();
+        if(request_type!="KONG")
+        {
+             emit downNext();
+
+        }
+
         qDebug()<<"result"<<result;
     }
 
@@ -375,5 +380,7 @@ void MainWidget::on_play_clicked()
 
 void MainWidget::on_set_clicked()
 {
-    QMessageBox::warning(this,"",QStringLiteral("待完善"));
+   // QMessageBox::warning(this,"",QStringLiteral("待完善"));
+    Menu *me = new Menu();
+    me->show();
 }

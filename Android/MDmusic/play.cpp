@@ -33,7 +33,7 @@ Play::Play(QWidget *parent) :
     mode = "XUNHUAN";
     connect(player, SIGNAL(positionChanged(qint64)), this, SLOT(positionChanged(qint64)));
    // player->setMedia(QUrl("http://fs.android2.kugou.com/9cd5746207ad63bfe09a01b38dcb31fa/5e6dc72c/G014/M06/0D/11/roYBAFUMeoeAbmcpAKDH4HkxDoU299.mp3"));
-    player->setVolume(30);
+    player->setVolume(90);
     playindex= 0;
     connect(this->player,&QMediaPlayer::positionChanged,this,&Play::updatePosition);
     connect(this->player,&QMediaPlayer::durationChanged,this,&Play::updateDuration);
@@ -167,6 +167,7 @@ void Play::updateViewList()
                 player->stop();
                 this->playNow = music_list.at(i);
                 playNow = music_list.at(i);
+                playindex = i;
                 player->setMedia(QUrl(music_list.at(i).url_320));
                 player->play();
                 ui->name->setText(music_list.at(i).name);
@@ -304,10 +305,6 @@ void Play::updatePosition(qint64 position)//接收歌曲位置改变，那么滑
     const qint64 minutes=seconds/60;
     seconds-=minutes*60;
     ui->time->setText(QStringLiteral("%1:%2/%3").arg(minutes, 2, 10, QLatin1Char('0')).arg(seconds, 2, 10, QLatin1Char('0')).arg(timeall));
-    if(duratime<=position){
-        qDebug()<<"小于";
-        //emit playend();
-    }
 }
 
 

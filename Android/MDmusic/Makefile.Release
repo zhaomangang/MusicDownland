@@ -128,18 +128,25 @@ compiler_rcc_clean:
 	-$(DEL_FILE) release\qrc_src.cpp
 release/qrc_src.cpp: src.qrc \
 		../../../../Qt/Qt5.9.0/5.9/mingw53_32/bin/rcc.exe \
-		image/vol-.png \
-		image/sort.jpg \
-		image/pause.jpg \
-		image/set.jpg \
-		image/xunhuan.png \
-		image/danqu.png \
 		image/play.jpg \
-		image/fm.jpg \
+		image/bg.jpg \
+		image/xunhuan.png \
+		image/set.jpg \
 		image/befor.jpg \
+		image/pay.jpg \
+		image/QQ.png \
 		image/menu.jpg \
+		image/fm.jpg \
+		image/sort.jpg \
+		image/suiji.jpg \
+		image/QQ176.png \
 		image/vol+.png \
-		image/suiji.jpg
+		image/header-bg.jpg \
+		image/vol-.png \
+		image/playbg.jpg \
+		image/pause.jpg \
+		image/danqu.png \
+		image/payy.png
 	D:\Qt\Qt5.9.0\5.9\mingw53_32\bin\rcc.exe -name src src.qrc -o release\qrc_src.cpp
 
 compiler_moc_predefs_make_all: release/moc_predefs.h
@@ -327,6 +334,7 @@ release/moc_mainwidget.cpp: ../../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidg
 		../../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qfiledialog.h \
 		../../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/qdir.h \
 		../../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/qfileinfo.h \
+		menu.h \
 		mainwidget.h \
 		release/moc_predefs.h \
 		../../../../Qt/Qt5.9.0/5.9/mingw53_32/bin/moc.exe
@@ -983,6 +991,7 @@ release/main.o: main.cpp mainwidget.h \
 		../../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qfiledialog.h \
 		../../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/qdir.h \
 		../../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/qfileinfo.h \
+		menu.h \
 		../../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QApplication \
 		../../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qapplication.h \
 		../../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/qcoreapplication.h \
@@ -1181,6 +1190,7 @@ release/mainwidget.o: mainwidget.cpp mainwidget.h \
 		../../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qfiledialog.h \
 		../../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/qdir.h \
 		../../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/qfileinfo.h \
+		menu.h \
 		ui_mainwidget.h \
 		../../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QAction \
 		../../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qaction.h \
@@ -1573,8 +1583,19 @@ release/menu.o: menu.cpp menu.h \
 		../../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qtabbar.h \
 		../../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qtabwidget.h \
 		../../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qrubberband.h \
-		../../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QLabel \
-		../../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qlabel.h
+		../../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QTextBrowser \
+		../../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qtextbrowser.h \
+		../../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qtextedit.h \
+		../../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qtextdocument.h \
+		../../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qtextoption.h \
+		../../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qtextcursor.h \
+		../../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qtextformat.h \
+		../../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qpen.h \
+		../../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QVBoxLayout \
+		../../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qboxlayout.h \
+		../../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qlayout.h \
+		../../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qgridlayout.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\menu.o menu.cpp
 
 release/data.o: data.cpp data.h \

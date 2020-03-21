@@ -12,5 +12,13 @@
         <file>image/vol-.png</file>
         <file>image/vol+.png</file>
         <file>image/befor.jpg</file>
+        <file>image/header-bg.jpg</file>
+        <file>image/bg.jpg</file>
+        <file>image/playbg.jpg</file>
+        <file>image/pay.jpg</file>
+        <file>image/QQ.png</file>
+        <file>image/payy.png</file>
+        <file>image/QQ176.png</file>
+        <file>image/bgbg.jpg</file>
     </qresource>
 </RCC>
